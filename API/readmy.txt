@@ -1,0 +1,10 @@
+1. dotnet new sln
+2. dotnet new webapi -o API
+3. dotnet sln add API
+4. via command line "assets" add .vscode folder 
+5. dotnet dev-certs https --trust
+6. set up "Microsoft.AspNetCore": "Information" in appsettings.json
+7. set up "launchBrowser": false, in launch.json
+8. dotnet tool install --global dotnet-ef --version 7.0.5 (if not installed)dotnet ef migrations 
+9. dotnet ef migrations add InitialCreate -o Data/Migrations
+10. dotnet ef database update
