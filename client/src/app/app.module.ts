@@ -13,6 +13,11 @@ import { RegisterComponent } from './register/register.component';
 import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { DateInputComponent } from './_forms/date-input/date-input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MemberListComponent } from './members/member-list/member-list.component';
+import { MemberDetailComponent } from './members/member-detail/member-detail.component';
+import { ListsComponent } from './lists/lists/lists.component';
+import { MessagesComponent } from './messages/messages/messages.component';
+import { NotFoundComponent } from './error/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +27,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RegisterComponent,
     TextInputComponent,
     DateInputComponent,
+    MemberListComponent,
+    MemberDetailComponent,
+    ListsComponent,
+    MessagesComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

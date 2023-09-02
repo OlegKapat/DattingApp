@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ReplaySubject, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -15,7 +15,9 @@ export class AccountService {
   constructor(private http: HttpClient, private presence: PresenceService) {}
 
   login(model: any) {
-    return this.http.post(this.baseUrl + 'account/login', model).pipe(
+    
+    return this.http.post(this.baseUrl + 'account/login', model)
+    .pipe(
       map((response: User) => {
         const user = response;
         if (user) {
