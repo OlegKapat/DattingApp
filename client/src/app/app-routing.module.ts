@@ -6,10 +6,11 @@ import { MemberDetailComponent } from './members/member-detail/member-detail.com
 import { ListsComponent } from './lists/lists/lists.component';
 import { MessagesComponent } from './messages/messages/messages.component';
 import { NotFoundComponent } from './error/not-found/not-found.component';
+import { authGuard } from './_guards/authGuard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'members', component: MemberListComponent },
+  { path: 'members', component: MemberListComponent, canActivate:[authGuard()] },
   { path: 'members/:id', component: MemberDetailComponent },
   { path: 'lists', component: ListsComponent },
   { path: 'messages', component: MessagesComponent },

@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavComponent } from './nav/nav.component';
 import { ToastrModule } from 'ngx-toastr';
 
 import { HomeComponent } from './home/home.component';
@@ -18,11 +17,12 @@ import { MemberDetailComponent } from './members/member-detail/member-detail.com
 import { ListsComponent } from './lists/lists/lists.component';
 import { MessagesComponent } from './messages/messages/messages.component';
 import { NotFoundComponent } from './error/not-found/not-found.component';
+import { NavComponent } from './nav/nav.component';
+import { SharedModule } from './_modules/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,
     HomeComponent,
     RegisterComponent,
     TextInputComponent,
@@ -32,6 +32,7 @@ import { NotFoundComponent } from './error/not-found/not-found.component';
     ListsComponent,
     MessagesComponent,
     NotFoundComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +41,8 @@ import { NotFoundComponent } from './error/not-found/not-found.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    SharedModule
+   
   ],
   providers: [],
   bootstrap: [AppComponent],
