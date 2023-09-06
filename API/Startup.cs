@@ -1,4 +1,5 @@
 using API.Extensions;
+using API.Middleware;
 using Microsoft.OpenApi.Models;
 
 namespace API
@@ -18,8 +19,10 @@ namespace API
             services.AddControllers();
             services.AddApplicationServices(_config);
 
-            services.AddCors(options=>{
-                options.AddDefaultPolicy(builder=>{
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
                     builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
                 });
             });
@@ -39,6 +42,7 @@ namespace API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
                 app.UseSwagger();
                 app
                     .UseSwaggerUI(c =>
@@ -46,7 +50,7 @@ namespace API
                             .SwaggerEndpoint("/swagger/v1/swagger.json",
                             "WebAPIv5 v1"));
             }
-
+            app.UseMiddleware<ExeptionMiddleware>();
             app.UseHttpsRedirection();
             app.UseCors();
             app.UseAuthentication();
