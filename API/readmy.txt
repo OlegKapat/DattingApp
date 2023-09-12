@@ -7,4 +7,5 @@
 7. set up "launchBrowser": false, in launch.json
 8. dotnet tool install --global dotnet-ef --version 7.0.5 (if not installed)dotnet ef migrations 
 9. dotnet ef migrations add InitialCreate -o Data/Migrations
-10. dotnet ef database update
+10. dotnet ef database update or
+11. dotnet ef migrations remove
