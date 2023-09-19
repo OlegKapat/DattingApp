@@ -10,6 +10,8 @@ import { authGuard } from './_guards/authGuard';
 import { TestErrorComponent } from './error/test-error/test-error.component';
 import { ServerErrorComponent } from './error/server-error/server-error.component';
 import { addDetailsMemberResolver } from './_forms/_resolvers/dataresolver';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { preventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.guard';
 
 
 const routes: Routes = [
@@ -18,8 +20,9 @@ const routes: Routes = [
     path: "",
     runGuardsAndResolvers: "always",                                                                                          // decides when guards and resolvers will be run
     canActivate: [authGuard],                                                                                                       // protects children
-    children: [{ path: 'members', component: MemberListComponent, canActivate: [authGuard()] },
+    children: [{ path: 'members', component: MemberListComponent },
     { path: 'members/:username', component: MemberDetailComponent, resolve: { member: addDetailsMemberResolver } },
+    { path: "member/edit", component: MemberEditComponent, canDeactivate: [preventUnsavedChangesGuard] },
     { path: 'lists', component: ListsComponent },
     { path: 'messages', component: MessagesComponent },]
   },

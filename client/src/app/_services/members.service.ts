@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { AccountService } from './account.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Member } from '../_models/member';
-import { Observable, take } from 'rxjs';
+import { Observable, map, take } from 'rxjs';
 import { UserParams } from '../_modules/userParams';
 import { User } from '../_models/user';
 
@@ -20,7 +20,9 @@ export class MembersService {
   baseUrl = environment.apiUrl;
   userParams: UserParams;
   user: User;
-  constructor(private http: HttpClient, private accountService: AccountService) { 
+  members: Member[] = [];
+  
+  constructor(private http: HttpClient, private accountService: AccountService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
       this.user = user;
       this.userParams = new UserParams(user);
@@ -41,6 +43,14 @@ export class MembersService {
     return this.userParams;
   }
   addLike(username: string) {
-    return this.http.post(this.baseUrl + 'likes/' + username, { });     
+    return this.http.post(this.baseUrl + 'likes/' + username, {});
+  }
+  updateMember(member: Member) {
+    return this.http.put(this.baseUrl + 'users', member).pipe(
+      map(() => {
+        const index = this.members.indexOf(member);
+        this.members[index] = member;
+      })
+    )
   }
 }

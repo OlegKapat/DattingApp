@@ -30,8 +30,6 @@ export class MemberDetailComponent implements OnInit {
   }
   ngOnInit(): void {
     this.route.data.subscribe(data => {
-      console.log(data);
-
       this.member = data.member;
     })
 

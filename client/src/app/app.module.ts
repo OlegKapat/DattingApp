@@ -25,6 +25,10 @@ import { ServerErrorComponent } from './error/server-error/server-error.componen
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { TimeagoModule } from "ngx-timeago";
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog/confirm-dialog.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -41,7 +45,9 @@ import { TimeagoModule } from "ngx-timeago";
     NavComponent,
     TestErrorComponent,
     ServerErrorComponent,
-    MemberCardComponent
+    MemberCardComponent,
+    MemberEditComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -50,10 +56,11 @@ import { TimeagoModule } from "ngx-timeago";
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    NgxSpinnerModule,
 
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }, { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }, { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }, { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
