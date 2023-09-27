@@ -13,7 +13,6 @@ import { MembersService } from 'src/app/_services/members.service';
   styleUrls: ['./member-edit.component.scss']
 })
 export class MemberEditComponent implements OnInit {
-
   @ViewChild('editForm') editForm: NgForm;
   member: Member;
   user: User;

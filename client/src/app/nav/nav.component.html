@@ -41,6 +41,7 @@
       *ngIf="accountService.currentUser$ | async as user"
       dropdown
     >
+    <img src="{{user.photoUrl || './assets/user.png'}}" alt="{{user.username}}">   
       <a class="dropdown-toggle text-light ml-2" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
         >Welcome {{ user.knownAs || user.username | titlecase }}</a
       >
