@@ -27,7 +27,7 @@
     [label]="'Username'"
   ></app-text-input>
   <app-text-input
-    [formControl]="registerForm.controls['knownAs']"
+    [formControl]="registerForm.controls['knowAs']"
     [label]="'Known As'"
   ></app-text-input>
   <app-date-input
@@ -64,7 +64,7 @@
 
   <div class="form-group text-center">
     <button
-      [disabled]="registerForm.valid"
+      [disabled]="!registerForm.valid"
       class="btn btn-success mr-2"
       type="submit"
     >

@@ -5,6 +5,7 @@ import { TimeagoModule } from 'ngx-timeago';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { FileUploadModule } from 'ng2-file-upload';
+import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 
 
 
@@ -16,6 +17,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     FileUploadModule,
     TimeagoModule.forRoot(),
     TabsModule.forRoot(),
+    BsDatepickerModule.forRoot(),  
     ToastrModule.forRoot({
       timeOut: 10000,
       positionClass: 'toast-bottom-right',
@@ -23,6 +25,6 @@ import { FileUploadModule } from 'ng2-file-upload';
     }),
 
   ],
-  exports: [ToastrModule, NgxGalleryModule, TimeagoModule, TabsModule, FileUploadModule,]
+  exports: [ToastrModule, NgxGalleryModule, TimeagoModule, TabsModule, FileUploadModule, BsDatepickerModule]
 })
 export class SharedModule { }
