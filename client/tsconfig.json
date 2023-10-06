@@ -4,7 +4,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "*": ["./*", "app/*", "../node_modules/*"]
+      "*": ["./*", "@app/*", "../node_modules/*"]
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,

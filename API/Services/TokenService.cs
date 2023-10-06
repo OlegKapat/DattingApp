@@ -15,6 +15,7 @@ namespace API.Services
     public class TokenService : ITokenService
     {
         private readonly SymmetricSecurityKey _key;
+
         public TokenService(IConfiguration config)
         {
             _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
@@ -24,13 +25,15 @@ namespace API.Services
         {
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.NameId,user.UserName)
+                new Claim(JwtRegisteredClaimNames.NameId, user.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName),
+                new Claim(JwtRegisteredClaimNames.Gender, user.Gender)
             };
-            var creds = new SigningCredentials(_key,SecurityAlgorithms.HmacSha512Signature);
-           var tokenDescriptor = new SecurityTokenDescriptor // sign our token here
+            var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);
+            var tokenDescriptor = new SecurityTokenDescriptor // sign our token here
             {
-                Subject = new ClaimsIdentity (claims),
-                Expires = DateTime.Now.AddDays (7),
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.Now.AddDays(7),
                 SigningCredentials = creds
             };
             var tokenHandler = new JwtSecurityTokenHandler();
