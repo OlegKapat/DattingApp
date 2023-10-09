@@ -24,12 +24,11 @@ namespace API.Entities
         public string City { get; set; }
         public string Country { get; set; }
         public ICollection<Photo> Photos { get; set; }
+         public ICollection<UserLike> LikedByUsers { get; set; }               // users liked by other users
+        public ICollection<UserLike> LikedUsers { get; set; }                  // users that have been liked
 
 
-        // public int GetAge()                                                      
-        // {
-        //     return DateOfBirth.CalculateAge();                                         
-        // }
+       
 
     }
 }
