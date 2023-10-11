@@ -26,7 +26,6 @@ export class MemberListComponent implements OnInit {
     this.memberService.setUserParams(this.userParams);
     this.memberService.getMembers(this.userParams).subscribe(response => {
       this.members = response.result;
-      console.log("🚀 ~ file: lists.component.ts:25 ~ this.memberService.getLikes ~ members:", this.members)
       this.pagination = response.pagination;
     })
   }

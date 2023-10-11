@@ -24,6 +24,8 @@ export class MembersService {
   user: User;
   members: Member[] = [];
   memberCache = new Map();  
+
+  
   paginatedResult: PaginatedResult<Member[]> = new PaginatedResult<Member[]>();
 
   constructor(private http: HttpClient, private accountService: AccountService) {
