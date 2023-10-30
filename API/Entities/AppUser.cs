@@ -1,18 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using API.Extensions;
+using Microsoft.AspNetCore.Identity;
 
 namespace API.Entities
 {
-    public class AppUser
+    public class AppUser : IdentityUser<int>
     {
-        public int Id { get; set; }
-        public string UserName { get; set; }
-        public byte[] PasswordHash { get; set; }
-        public byte[] PasswordSalt { get; set; }
+        // public int Id { get; set; }
+        // public string UserName { get; set; }
+        // public byte[] PasswordHash { get; set; }
+        // public byte[] PasswordSalt { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string KnowAs { get; set; }
         public DateTime Created { get; set; } = DateTime.Now;
@@ -24,13 +19,10 @@ namespace API.Entities
         public string City { get; set; }
         public string Country { get; set; }
         public ICollection<Photo> Photos { get; set; }
-         public ICollection<UserLike> LikedByUsers { get; set; }               // users liked by other users
-        public ICollection<UserLike> LikedUsers { get; set; }                  // users that have been liked
-         public ICollection<Message> MessagesSent { get; set; }                 
-        public ICollection<Message> MessagesReceived { get; set; } 
-
-
-       
-
+        public ICollection<UserLike> LikedByUsers { get; set; } // users liked by other users
+        public ICollection<UserLike> LikedUsers { get; set; } // users that have been liked
+        public ICollection<Message> MessagesSent { get; set; }
+        public ICollection<Message> MessagesReceived { get; set; }
+        public ICollection<AppUserRole> UserRoles { get; set; }
     }
 }
