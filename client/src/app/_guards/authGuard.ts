@@ -15,6 +15,7 @@ export function authGuard(): CanActivateFn {
 
     return accountService.currentUser$.pipe(
       map((user) => {
+      
         if (user) return true;
         else {
           toastr.error('You shall not pass!');
