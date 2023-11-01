@@ -1,5 +1,7 @@
 using API.Extensions;
 using API.Middleware;
+using API.SignalR;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.OpenApi.Models;
 
 namespace API
@@ -18,14 +20,14 @@ namespace API
         {
             services.AddControllers();
             services.AddApplicationServices(_config);
-
             services.AddCors(options =>
             {
-                options.AddDefaultPolicy(builder =>
+                options.AddPolicy("CorsPolicy",builder =>
                 {
-                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                    builder.AllowAnyMethod().AllowAnyHeader().AllowCredentials().WithOrigins("http://localhost:4200");;
                 });
             });
+             services.AddSignalR();
             services.AddIdentityServices(_config);
             services
                 .AddSwaggerGen(c =>
@@ -52,13 +54,15 @@ namespace API
             }
             app.UseMiddleware<ExeptionMiddleware>();
             app.UseHttpsRedirection();
-            app.UseCors();
             app.UseAuthentication();
             app.UseRouting();
+            app.UseCors("CorsPolicy");
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
                 {
                     endpoints.MapControllers();
+                    endpoints.MapHub<PresenceHub>("hubs/presence");
+                    endpoints.MapHub<MessageHub>("hubs/message");
                 });
         }
     }
