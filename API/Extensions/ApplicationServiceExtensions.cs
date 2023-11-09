@@ -26,7 +26,7 @@ namespace API.Extensions
                 .AddDbContext<DataContext>(options =>
                 {
                     options
-                        .UseSqlite(config
+                        .UseNpgsql(config
                             .GetConnectionString("DefaultConnection"));
                 });
             return services;
