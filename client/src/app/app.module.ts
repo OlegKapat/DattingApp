@@ -24,7 +24,6 @@ import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { ServerErrorComponent } from './error/server-error/server-error.component';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
-import { TimeagoModule } from "ngx-timeago";
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog/confirm-dialog.component';
 import { NgxSpinnerModule } from 'ngx-spinner';

@@ -1,4 +1,4 @@
-import { Directive, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import { ComponentRef, Directive, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { AccountService } from '../_services/account.service';
 import { User } from '../_models/user';
 import { take } from 'rxjs';
@@ -15,14 +15,15 @@ export class HasRoleDirective implements OnInit {
     })
   }
   ngOnInit(): void {
+     let ref:ComponentRef<any>[]=[]
     if (!this.user?.roles || this.user == null) {
       this.viewContainerRef.clear();
       return;
     }
     if (this.user?.roles.some(r => this.appHasRole.includes(r))) {
-      this.viewContainerRef.createEmbeddedView(this.templateRef);           // template ref is the <li> in nav.component.html class="nav-link" routerLink='/admin'
+      this.viewContainerRef.createEmbeddedView(this.templateRef);          // template ref is the <li> in nav.component.html class="nav-link" routerLink='/admin'
     } else {
-      this.viewContainerRef.clear();                                                                // clears the ref if not in that role
+      this.viewContainerRef.clear();                                                                
     }
   }
 }

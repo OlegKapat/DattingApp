@@ -50,7 +50,7 @@ export class MessageService {
         this.messageThread$.pipe(take(1)).subscribe(messages => {
           messages.forEach(message => {
             if (!message.dateRead) {
-              message.dateRead = new Date(Date.now())
+              message.dateRead = new Date(Date.now())  
             }
           })
           this.messageThreadSource.next([...messages]);
