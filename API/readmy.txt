@@ -9,3 +9,5 @@
 9. dotnet ef migrations add InitialCreate -o Data/Migrations
 10. dotnet ef database update or
 11. dotnet ef migrations remove
+ng build --configuration production
+docker run --name dev -e POSTGRES_USER=appuser  -e POSTGRES_PASSWORD=1q2q3q4q -p 5432:5432 -d postgres:latest

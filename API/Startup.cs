@@ -22,20 +22,25 @@ namespace API
             services.AddApplicationServices(_config);
             services.AddCors(options =>
             {
-                options.AddPolicy("CorsPolicy",builder =>
-                {
-                    builder.AllowAnyMethod().AllowAnyHeader().AllowCredentials().WithOrigins("http://localhost:4200");;
-                });
+                options.AddPolicy(
+                    "CorsPolicy",
+                    builder =>
+                    {
+                        builder
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                            .AllowCredentials()
+                            .WithOrigins("http://localhost:4200");
+                        ;
+                    }
+                );
             });
-             services.AddSignalR();
+            services.AddSignalR();
             services.AddIdentityServices(_config);
-            services
-                .AddSwaggerGen(c =>
-                {
-                    c
-                        .SwaggerDoc("v1",
-                        new OpenApiInfo { Title = "WebAPIv5", Version = "v1" });
-                });
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPIv5", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,11 +51,7 @@ namespace API
                 app.UseDeveloperExceptionPage();
 
                 app.UseSwagger();
-                app
-                    .UseSwaggerUI(c =>
-                        c
-                            .SwaggerEndpoint("/swagger/v1/swagger.json",
-                            "WebAPIv5 v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPIv5 v1"));
             }
             app.UseMiddleware<ExeptionMiddleware>();
             app.UseHttpsRedirection();
@@ -58,12 +59,15 @@ namespace API
             app.UseRouting();
             app.UseCors("CorsPolicy");
             app.UseAuthorization();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
             app.UseEndpoints(endpoints =>
-                {
-                    endpoints.MapControllers();
-                    endpoints.MapHub<PresenceHub>("hubs/presence");
-                    endpoints.MapHub<MessageHub>("hubs/message");
-                });
+            {
+                endpoints.MapControllers();
+                endpoints.MapHub<PresenceHub>("hubs/presence");
+                endpoints.MapHub<MessageHub>("hubs/message");
+                endpoints.MapFallbackToController("Index", "Fallback");   
+            });
         }
     }
 }
